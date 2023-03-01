@@ -14,7 +14,19 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1><h1>Welcome to DB Servlet</h1>
+        <%
+          String username="";
+          Cookie[] cookies = request.getCookies();
+          if (cookies != null) {
+            for (int i=0; i<cookies.length; i++) {
+                if(cookies[i].getName().equals("Username")) {
+                    username = cookies[i].getValue();
+                }
+            }
+          }
+        %>
+        <h1 style="color:red">Welcome <%=username%></h1>
+        <h1>Welcome to DB Servlet</h1>
         <form action="MainController">
             <label for="name">Name</label>
             <input type="text" name="txtSearchValue" value="" id="name"/>
@@ -61,11 +73,14 @@
                 <tr>
                     <form action="UpdateController">
                         <td>
+                            <%=++count%>
+                        </td>
+                        <td>
                             <%=x.getUsername()%>
                             <input type='hidden' name='txtUsername' value= '<%=x.getUsername()%>'/>
                         </td>
                         <td>
-                            <input type='text' name='txtPassword' value='<%=x.getPassword()%>'/>
+                            <input type='password' name='txtPassword' value='<%=x.getPassword()%>'/>
                         </td>
                         <td>
                             <%=x.getLastname()%> 

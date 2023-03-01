@@ -8,6 +8,7 @@ package tinnq.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -42,6 +43,9 @@ public class LoginController extends HttpServlet {
                 boolean result = dao.checkLogin(username, password);
                 if (result) {
                     url = WELCOMEPAGE;
+                    Cookie loginCookie = new Cookie("Username",username);
+                    loginCookie.setMaxAge(60*5);
+                    response.addCookie(loginCookie);
                 }
                 response.sendRedirect(url);
             }
