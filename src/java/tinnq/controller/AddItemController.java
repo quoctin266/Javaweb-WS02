@@ -5,72 +5,46 @@
 
 package tinnq.controller;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletConfig;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import tinnq.shoppingCart.CartObj;
 
 /**
  *
- * @author admin
+ * @author ADMINS
  */
-public class MainController extends HttpServlet {
-    private final String LOGINCONTROLLER = "LoginController";
-    private final String SEARCHCONTROLLER = "SearchController";
-    private final String LOGINPAGE = "index.html";
-    private final String ADDITEMCONTROLLER = "AddItemController";
-    private final String DELETEITEMCONTROLLER = "DeleteItemController";
-    private final String VIEWCART = "ViewCart.jsp";
-    @Override
-    public void init(ServletConfig config)
-    throws ServletException {
-        super.init(config); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    } 
-
-    /**
+public class AddItemController extends HttpServlet {
+    private final String SHOPPINGPAGE = "bookStore.html";
+    /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    public void destroy() {
-        super.destroy(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-        System.out.println("destroy");
-    }
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
-            String url = LOGINPAGE;
-            String button = request.getParameter("btAction");
             try {
-                if (button.equals("Login")) {
-                    url = LOGINCONTROLLER;
+                HttpSession session = request.getSession();
+                CartObj cart = (CartObj)session.getAttribute("CART");
+                if (cart == null) {
+                    cart = new CartObj();
                 }
-                else if (button.equals("Search")) {
-                    url = SEARCHCONTROLLER;
-                }
-                else if (button.equals("Add to cart")) {
-                    url = ADDITEMCONTROLLER;
-                }
-                else if (button.equals("View cart")) {
-                    url = VIEWCART;
-                }
-                else if (button.equals("Remove items")) {
-                    url = DELETEITEMCONTROLLER;
-                }
+                String title = request.getParameter("bookList");
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
+                cart.addItemToCart(title,quantity);
+                session.setAttribute("CART", cart);
+                response.sendRedirect(SHOPPINGPAGE);
             }
             finally {
-                RequestDispatcher rd = request.getRequestDispatcher(url);
-                rd.forward(request, response);
                 out.close();
             }
         }
@@ -88,7 +62,6 @@ public class MainController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
-        System.out.println("do GET......");
     } 
 
     /** 
@@ -102,9 +75,8 @@ public class MainController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
-        System.out.println("do POST.....");
     }
-    
+
     /** 
      * Returns a short description of the servlet.
      * @return a String containing servlet description

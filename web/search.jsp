@@ -33,6 +33,8 @@
             <br> <br>
             <input type="submit" value="Search" name="btAction" />
             <button type="submit" formaction="index.html">Return</button>
+            <br> <br>
+            <button type="submit" formaction="bookStore.html">Go Shopping</button>
         </form>
         <br>
         <br>
@@ -99,6 +101,7 @@
                 </tr>
                 <%
                     }
+                    count = 0;
                 %>
             </tbody>
         </table>

@@ -24,6 +24,14 @@
         <servlet-name>UpdateController</servlet-name>
         <servlet-class>tinnq.controller.UpdateController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddItemController</servlet-name>
+        <servlet-class>tinnq.controller.AddItemController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteItemController</servlet-name>
+        <servlet-class>tinnq.controller.DeleteItemController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>UpdateController</servlet-name>
         <url-pattern>/UpdateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddItemController</servlet-name>
+        <url-pattern>/AddItemController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteItemController</servlet-name>
+        <url-pattern>/DeleteItemController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

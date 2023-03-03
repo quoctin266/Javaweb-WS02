@@ -10,14 +10,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>Book Store</div>
-        <form action="MainController">
-            <select name="bookList" >
-                <option>Java</option>
-                <option>JS</option>
-                <option>Python</option>
-                <option>C#</option>
+        <h1 style="text-align: center">Book Store</h1>
+        <form action="MainController" style="margin-left:40%">
+            <select name="bookList" style="margin-right: 20px">
+                <option value="Java">Java</option>
+                <option value="JS">JS</option>
+                <option value="Python">Python</option>
+                <option value="C#">C#</option>
             </select>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="0" value="0">
+            <br>
             <br>
             <input type="submit" value="Add to cart" name="btAction" />
             <input type="submit" value="View cart" name="btAction" />
