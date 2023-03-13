@@ -5,13 +5,13 @@
 
 package tinnq.controller;
 
-import jakarta.servlet.RequestDispatcher;
+import javax.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.List;
 import javax.naming.NamingException;
@@ -40,13 +40,11 @@ public class SearchController extends HttpServlet {
             String url = WELCOMEPAGE;
             String searchValue = request.getParameter("txtSearchValue");
             try {
-                if (!searchValue.isEmpty()) {
-                    RegistrationDAO dao = new RegistrationDAO();
-                    dao.searchLastname(searchValue);
-                    List<RegistrationDTO> result = dao.getListAccounts();
-                    request.setAttribute("SEARCHRESULT", result);
-                    request.setAttribute("firstLoad", "firstLoad");
-                }
+                RegistrationDAO dao = new RegistrationDAO();
+                dao.searchLastname(searchValue);
+                List<RegistrationDTO> result = dao.getListAccounts();
+                request.setAttribute("SEARCHRESULT", result);
+                request.setAttribute("firstLoad", "firstLoad");
             }
             catch (NamingException ex) {
                 ex.printStackTrace();

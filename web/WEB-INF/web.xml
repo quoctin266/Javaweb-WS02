@@ -32,6 +32,10 @@
         <servlet-name>DeleteItemController</servlet-name>
         <servlet-class>tinnq.controller.DeleteItemController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InsertController</servlet-name>
+        <servlet-class>tinnq.controller.InsertController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>DeleteItemController</servlet-name>
         <url-pattern>/DeleteItemController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertController</servlet-name>
+        <url-pattern>/InsertController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

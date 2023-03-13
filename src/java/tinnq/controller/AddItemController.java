@@ -7,11 +7,11 @@ package tinnq.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import tinnq.shoppingCart.CartObj;
 
 /**
@@ -19,6 +19,7 @@ import tinnq.shoppingCart.CartObj;
  * @author ADMINS
  */
 public class AddItemController extends HttpServlet {
+
     private final String SHOPPINGPAGE = "bookStore.html";
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
